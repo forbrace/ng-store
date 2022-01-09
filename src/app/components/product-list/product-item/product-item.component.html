@@ -1,0 +1,22 @@
+<div class="card">
+  <a routerLink="/product/{{ product.id }}" class="d-block">
+    <img src="{{ product.url }}" class="img-fluid" width="800" height="1200" alt="{{ product.name }}">
+  </a>
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.description }}</p>
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <b>{{ product.price | currency: 'USD' }}</b>
+      </div>
+      <div class="ms-auto me-2">
+        <select name="quantity" class="form-select" id="quantity" [(ngModel)]="quantity">
+          <option [value]="quantity" *ngFor="let quantity of maxQuantity">{{ quantity }}</option>
+        </select>
+      </div>
+      <div>
+        <a (click)="addToCart(product, +quantity)" class="btn btn-primary">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+</div>

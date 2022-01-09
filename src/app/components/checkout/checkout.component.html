@@ -1,0 +1,389 @@
+<div class="mb-3">
+  <a routerLink="/" class="me-2">Home</a>
+  <span class="me-2">&rarr;</span>
+  <a routerLink="/cart" class="me-2">Cart</a>
+  <span class="me-2">&rarr;</span>
+  Checkout
+</div>
+<div class="row">
+  <div class="col-lg-7">
+    <h2 class="mb-3">Checkout</h2>
+    <div class="row">
+      <div class="col-xl-9 col-lg-10">
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              name="fullName"
+              [(ngModel)]="fullName"
+              placeholder="Full Name"
+              class="form-control"
+              autocomplete="name"
+              required
+              minlength="3"
+              #formFullName="ngModel"
+              [ngClass]="{
+                'is-invalid':
+                  formFullName.invalid &&
+                  formFullName.dirty &&
+                  formFullName.touched
+              }"
+            />
+            <label>Full Name</label>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                formFullName.invalid &&
+                formFullName.dirty &&
+                formFullName.touched
+              "
+            >
+              <ng-template [ngIf]="formFullName.errors?.['required']"
+                >Full Name is required.</ng-template
+              >
+              <ng-template [ngIf]="formFullName.errors?.['minlength']"
+                >Full Name must be a minimum of
+                {{ formFullName.errors?.['minlength']?.['requiredLength'] }}
+                chars length.</ng-template
+              >
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="demo@example.com"
+              class="form-control"
+              autocomplete="email"
+              required
+              email
+              #formEmail="ngModel"
+              [ngClass]="{
+                'is-invalid':
+                  formEmail.invalid && formEmail.dirty && formEmail.touched
+              }"
+            />
+            <label>Email Address</label>
+            <div
+              class="invalid-feedback"
+              *ngIf="formEmail.invalid && formEmail.dirty && formEmail.touched"
+            >
+              <ng-template [ngIf]="formEmail.errors?.['required']"
+                >Email Address is required.</ng-template
+              >
+              <ng-template [ngIf]="formEmail.errors?.['email']">
+                Email Address is invalid
+              </ng-template>
+            </div>
+          </div>
+
+          <h6 class="mt-4">Delivery Address</h6>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              name="address"
+              [(ngModel)]="address"
+              placeholder="Street Address"
+              class="form-control"
+              autocomplete="street-address"
+              required
+              minlength="3"
+              #formAddress="ngModel"
+              [ngClass]="{
+                'is-invalid':
+                  formAddress.invalid &&
+                  formAddress.dirty &&
+                  formAddress.touched
+              }"
+            />
+            <label>Street Address</label>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                formAddress.invalid && formAddress.dirty && formAddress.touched
+              "
+            >
+              <ng-template [ngIf]="formAddress.errors?.['required']"
+                >Street Address is required.</ng-template
+              >
+              <ng-template [ngIf]="formAddress.errors?.['minlength']"
+                >Street Address must be a minimum of
+                {{ formAddress.errors?.['minlength']?.['requiredLength'] }}
+                chars length.</ng-template
+              >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  name="zip"
+                  [(ngModel)]="zipCode"
+                  placeholder="ZIP/Postal Code"
+                  class="form-control"
+                  autocomplete="postal-code"
+                  required
+                  minlength="3"
+                  #formZipCode="ngModel"
+                  [ngClass]="{
+                    'is-invalid':
+                      formZipCode.invalid &&
+                      formZipCode.dirty &&
+                      formZipCode.touched
+                  }"
+                />
+                <label>ZIP/Postal Code</label>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    formZipCode.invalid &&
+                    formZipCode.dirty &&
+                    formZipCode.touched
+                  "
+                >
+                  <ng-template [ngIf]="formZipCode.errors?.['required']"
+                    >ZIP/Postal Code is required.</ng-template
+                  >
+                  <ng-template [ngIf]="formZipCode.errors?.['minlength']"
+                    >ZIP/Postal Code must be a minimum of
+                    {{ formZipCode.errors?.['minlength']?.['requiredLength'] }}
+                    chars length.</ng-template
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-floating mb-3">
+                <select
+                  [(ngModel)]="country"
+                  name="country"
+                  class="form-select"
+                >
+                  <option
+                    *ngFor="let c of countries"
+                    [selected]="country.code === c.code"
+                  >
+                    {{ c.name }}
+                  </option>
+                </select>
+                <label>Country</label>
+              </div>
+            </div>
+          </div>
+
+          <h6 class="mt-2">Payment Details</h6>
+          <div class="form-floating mb-3">
+            <input
+              type="tel"
+              name="ccNumber"
+              [(ngModel)]="ccNumber"
+              placeholder="Card Number"
+              class="form-control"
+              autocomplete="cc-number"
+              required
+              minlength="8"
+              maxlength="19"
+              #formCCNumber="ngModel"
+              [ngClass]="{
+                'is-invalid':
+                  formCCNumber.invalid &&
+                  formCCNumber.dirty &&
+                  formCCNumber.touched
+              }"
+            />
+            <label>Card Number</label>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                formCCNumber.invalid &&
+                formCCNumber.dirty &&
+                formCCNumber.touched
+              "
+            >
+              <ng-template [ngIf]="formCCNumber.errors?.['required']"
+                >Card Number is required.</ng-template
+              >
+              <ng-template [ngIf]="formCCNumber.errors?.['minlength']"
+                >Card Number must be a minimum of
+                {{ formCCNumber.errors?.['minlength']?.['requiredLength'] }}
+                digits length.</ng-template
+              >
+              <ng-template [ngIf]="formCCNumber.errors?.['maxlength']"
+                >Card Number must be a maximum of
+                {{ formCCNumber.errors?.['maxlength']?.['requiredLength'] }}
+                digits length.</ng-template
+              >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  name="ccExpireMonth"
+                  [(ngModel)]="ccExpireMonth"
+                  placeholder="01"
+                  class="form-control"
+                  autocomplete="cc-exp"
+                  required
+                  minlength="2"
+                  maxlength="2"
+                  #formCCExpireMonth="ngModel"
+                  [ngClass]="{
+                    'is-invalid':
+                      formCCExpireMonth.invalid &&
+                      formCCExpireMonth.dirty &&
+                      formCCExpireMonth.touched
+                  }"
+                />
+                <label>Exp. Month</label>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    formCCExpireMonth.invalid &&
+                    formCCExpireMonth.dirty &&
+                    formCCExpireMonth.touched
+                  "
+                >
+                  <ng-template [ngIf]="formCCExpireMonth.errors?.['required']"
+                    >Exp. Month is required.</ng-template
+                  >
+                  <ng-template [ngIf]="formCCExpireMonth.errors?.['minlength']"
+                    >Minimum
+                    {{ formCCExpireMonth.errors?.['minlength']?.['requiredLength'] }}
+                    digits.</ng-template
+                  >
+                  <ng-template [ngIf]="formCCExpireMonth.errors?.['maxlength']"
+                    >Maximum of
+                    {{ formCCExpireMonth.errors?.['maxlength']?.['requiredLength'] }}
+                    digits.</ng-template
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  name="ccExpireYear"
+                  [(ngModel)]="ccExpireYear"
+                  placeholder="2021"
+                  class="form-control"
+                  autocomplete="cc-exp"
+                  required
+                  minlength="4"
+                  maxlength="4"
+                  #formCCExpireYear="ngModel"
+                  [ngClass]="{
+                    'is-invalid':
+                      formCCExpireYear.invalid &&
+                      formCCExpireYear.dirty &&
+                      formCCExpireYear.touched
+                  }"
+                />
+                <label>Exp. Year</label>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    formCCExpireYear.invalid &&
+                    formCCExpireYear.dirty &&
+                    formCCExpireYear.touched
+                  "
+                >
+                  <ng-template [ngIf]="formCCExpireYear.errors?.['required']"
+                    >Exp. Year is required.</ng-template
+                  >
+                  <ng-template [ngIf]="formCCExpireYear.errors?.['minlength']"
+                    >Minimum of
+                    {{ formCCExpireYear.errors?.['minlength']?.['requiredLength'] }}
+                    digits.</ng-template
+                  >
+                  <ng-template [ngIf]="formCCExpireYear.errors?.['maxlength']"
+                    >Maximum of
+                    {{ formCCExpireYear.errors?.['maxlength']?.['requiredLength'] }}
+                    digits.</ng-template
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  name="ccCode"
+                  [(ngModel)]="ccCode"
+                  placeholder="Code"
+                  class="form-control"
+                  autocomplete="cc-csc"
+                  required
+                  minlength="3"
+                  maxlength="4"
+                  #formCCCode="ngModel"
+                  [ngClass]="{
+                    'is-invalid':
+                      formCCCode.invalid &&
+                      formCCCode.dirty &&
+                      formCCCode.touched
+                  }"
+                />
+                <label>Security Code</label>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    formCCCode.invalid && formCCCode.dirty && formCCCode.touched
+                  "
+                >
+                  <ng-template [ngIf]="formCCCode.errors?.['required']"
+                    >Security Code is required.</ng-template
+                  >
+                  <ng-template [ngIf]="formCCCode.errors?.['minlength']"
+                    >Minimum of
+                    {{ formCCCode.errors?.['minlength']?.['requiredLength'] }}
+                    digits.</ng-template
+                  >
+                  <ng-template [ngIf]="formCCCode.errors?.['maxlength']"
+                    >Maximum of
+                    {{ formCCCode.errors?.['maxlength']?.['requiredLength'] }}
+                    digits.</ng-template
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            [disabled]="form.invalid"
+            type="submit"
+            class="btn btn-lg btn-primary"
+          >
+            Pay Now
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5 mt-3 mt-lg-0">
+    <div class="p-4 bg-light">
+      <h6 class="text-uppercase fw-bold mb-3">Order Summary</h6>
+      <table class="table table-sm mb-0">
+        <tr *ngFor="let product of cart.products">
+          <td>{{ product.name }}</td>
+          <td class="text-end">{{ product.price | currency: "USD" }}</td>
+          <td class="text-center">×</td>
+          <td class="text-end">{{ product.quantity }}</td>
+          <td class="text-end">=</td>
+          <td class="text-end">
+            {{ product.price * product.quantity | currency: "USD" }}
+          </td>
+        </tr>
+        <tr>
+          <td class="text-end h4 pt-3" colspan="7">
+            Total: {{ cart.totalPrice | currency: "USD" }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

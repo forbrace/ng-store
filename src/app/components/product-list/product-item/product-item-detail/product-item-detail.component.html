@@ -1,0 +1,42 @@
+<ng-template [ngIf]="loading">
+Loading…
+</ng-template>
+<ng-template [ngIf]="!loading">
+  <ng-template [ngIf]="!errorResponse">
+    <div class="mb-3">
+      <a routerLink="/" class="me-2">Home</a>
+      <span class="me-2">&rarr;</span>
+      {{ product.name }}
+    </div>
+    <div class="row">
+      <div class="col-lg-5">
+        <img src="{{ product.url }}" class="img-fluid" width="800" height="1200" alt="">
+      </div>
+      <div class="col-lg-7 mt-5 mt-lg-0">
+        <h2>
+          {{ product.name }}
+        </h2>
+        <p>
+          {{ product.description }}
+        </p>
+        <p class="h3">
+          {{ product.price | currency: 'USD' }}
+        </p>
+        <div class="d-flex align-items-center my-2">
+          <label for="quantity" class="me-2">Quantity:</label>
+          <div class="me-2">
+            <select name="quantity" class="form-select" id="quantity" [(ngModel)]="quantity">
+              <option [value]="quantity" *ngFor="let quantity of maxQuantity">{{ quantity }}</option>
+            </select>
+          </div>
+          <div>
+            <button class="btn btn-primary" (click)="addToCart(product, quantity)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="errorResponse">
+    {{ errorResponse?.message || 'Error occurred.' }}
+  </ng-template>
+</ng-template>
