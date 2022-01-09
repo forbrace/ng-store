@@ -18,7 +18,7 @@
               [(ngModel)]="fullName"
               placeholder="Full Name"
               class="form-control"
-
+              autocomplete="name"
               required
               minlength="3"
               #formFullName="ngModel"
@@ -38,14 +38,14 @@
                 formFullName.touched
               "
             >
-              <div *ngIf="formFullName.errors?.['required']"
-                >Full Name is required.</div
-              >
-              <div *ngIf="formFullName.errors?.['minlength']"
-                >Full Name must be a minimum of
+              <div *ngIf="formFullName.errors?.['required']">
+                Full Name is required.
+              </div>
+              <div *ngIf="formFullName.errors?.['minlength']">
+                Full Name must be a minimum of
                 {{ formFullName.errors?.['minlength']?.['requiredLength'] }}
-                chars length.</div
-              >
+                chars length.
+              </div>
             </div>
           </div>
           <div class="form-floating mb-3">
@@ -55,7 +55,7 @@
               [(ngModel)]="email"
               placeholder="demo@example.com"
               class="form-control"
-
+              autocomplete="email"
               required
               email
               #formEmail="ngModel"
@@ -69,9 +69,9 @@
               class="invalid-feedback"
               *ngIf="formEmail.invalid && formEmail.dirty && formEmail.touched"
             >
-              <div *ngIf="formEmail.errors?.['required']"
-                >Email Address is required.</div
-              >
+              <div *ngIf="formEmail.errors?.['required']">
+                Email Address is required.
+              </div>
               <div *ngIf="formEmail.errors?.['email']">
                 Email Address is invalid
               </div>
@@ -86,7 +86,7 @@
               [(ngModel)]="address"
               placeholder="Street Address"
               class="form-control"
-
+              autocomplete="street-address"
               required
               minlength="3"
               #formAddress="ngModel"
@@ -104,14 +104,14 @@
                 formAddress.invalid && formAddress.dirty && formAddress.touched
               "
             >
-              <div *ngIf="formAddress.errors?.['required']"
-                >Street Address is required.</div
-              >
-              <div *ngIf="formAddress.errors?.['minlength']"
-                >Street Address must be a minimum of
+              <div *ngIf="formAddress.errors?.['required']">
+                Street Address is required.
+              </div>
+              <div *ngIf="formAddress.errors?.['minlength']">
+                Street Address must be a minimum of
                 {{ formAddress.errors?.['minlength']?.['requiredLength'] }}
-                chars length.</div
-              >
+                chars length.
+              </div>
             </div>
           </div>
           <div class="row">
@@ -124,7 +124,7 @@
                   [(ngModel)]="zipCode"
                   placeholder="ZIP/Postal Code"
                   class="form-control"
-
+                  autocomplete="postal-code"
                   required
                   minlength="3"
                   #formZipCode="ngModel"
@@ -144,18 +144,19 @@
                     formZipCode.touched
                   "
                 >
-                  <div *ngIf="formZipCode.errors?.['pattern']?.['requiredPattern'] === '^\\d*$'"
+                  <div
+                    *ngIf="formZipCode.errors?.['pattern']?.['requiredPattern'] === '^\\d*$'"
                   >
                     Only numbers are allowed.
                   </div>
-                  <div *ngIf="formZipCode.errors?.['required']"
-                    >ZIP/Postal Code is required.</div
-                  >
-                  <div *ngIf="formZipCode.errors?.['minlength']"
-                    >Minimum
+                  <div *ngIf="formZipCode.errors?.['required']">
+                    ZIP/Postal Code is required.
+                  </div>
+                  <div *ngIf="formZipCode.errors?.['minlength']">
+                    Minimum
                     {{ formZipCode.errors?.['minlength']?.['requiredLength'] }}
-                    digits.</div
-                  >
+                    digits.
+                  </div>
                 </div>
               </div>
             </div>
@@ -187,7 +188,7 @@
               [(ngModel)]="ccNumber"
               placeholder="Card Number"
               class="form-control"
-
+              autocomplete="cc-number"
               required
               minlength="8"
               maxlength="19"
@@ -208,23 +209,24 @@
                 formCCNumber.touched
               "
             >
-              <div *ngIf="formCCNumber.errors?.['pattern']?.['requiredPattern'] === '^\\d*$'"
+              <div
+                *ngIf="formCCNumber.errors?.['pattern']?.['requiredPattern'] === '^\\d*$'"
               >
                 Only numbers are allowed.
               </div>
-              <div *ngIf="formCCNumber.errors?.['required']"
-                >Card Number is required.</div
-              >
-              <div *ngIf="formCCNumber.errors?.['minlength']"
-                >Card Number must be a minimum of
+              <div *ngIf="formCCNumber.errors?.['required']">
+                Card Number is required.
+              </div>
+              <div *ngIf="formCCNumber.errors?.['minlength']">
+                Card Number must be a minimum of
                 {{ formCCNumber.errors?.['minlength']?.['requiredLength'] }}
-                digits length.</div
-              >
-              <div *ngIf="formCCNumber.errors?.['maxlength']"
-                >Card Number must be a maximum of
+                digits length.
+              </div>
+              <div *ngIf="formCCNumber.errors?.['maxlength']">
+                Card Number must be a maximum of
                 {{ formCCNumber.errors?.['maxlength']?.['requiredLength'] }}
-                digits length.</div
-              >
+                digits length.
+              </div>
             </div>
           </div>
           <div class="row">
@@ -237,7 +239,7 @@
                   [(ngModel)]="ccExpireMonth"
                   placeholder="01"
                   class="form-control"
-
+                  autocomplete="cc-exp-month"
                   required
                   minlength="2"
                   maxlength="2"
@@ -258,23 +260,24 @@
                     formCCExpireMonth.touched
                   "
                 >
-                  <div *ngIf="formCCExpireMonth.errors?.['pattern']?.['requiredPattern'] === '^\\d*$'"
+                  <div
+                    *ngIf="formCCExpireMonth.errors?.['pattern']?.['requiredPattern'] === '^\\d*$'"
                   >
                     Only numbers are allowed.
                   </div>
-                  <div *ngIf="formCCExpireMonth.errors?.['required']"
-                    >Exp. Month is required.</div
-                  >
-                  <div *ngIf="formCCExpireMonth.errors?.['minlength']"
-                    >Minimum
+                  <div *ngIf="formCCExpireMonth.errors?.['required']">
+                    Exp. Month is required.
+                  </div>
+                  <div *ngIf="formCCExpireMonth.errors?.['minlength']">
+                    Minimum
                     {{ formCCExpireMonth.errors?.['minlength']?.['requiredLength'] }}
-                    digits.</div
-                  >
-                  <div *ngIf="formCCExpireMonth.errors?.['maxlength']"
-                    >Maximum of
+                    digits.
+                  </div>
+                  <div *ngIf="formCCExpireMonth.errors?.['maxlength']">
+                    Maximum of
                     {{ formCCExpireMonth.errors?.['maxlength']?.['requiredLength'] }}
-                    digits.</div
-                  >
+                    digits.
+                  </div>
                 </div>
               </div>
             </div>
@@ -287,7 +290,7 @@
                   [(ngModel)]="ccExpireYear"
                   placeholder="2021"
                   class="form-control"
-
+                  autocomplete="cc-exp-year"
                   required
                   minlength="4"
                   maxlength="4"
@@ -308,23 +311,24 @@
                     formCCExpireYear.touched
                   "
                 >
-                  <div *ngIf="formCCExpireYear.errors?.['pattern']?.['requiredPattern'] === '^\\d*$'"
+                  <div
+                    *ngIf="formCCExpireYear.errors?.['pattern']?.['requiredPattern'] === '^\\d*$'"
                   >
                     Only numbers are allowed.
                   </div>
-                  <div *ngIf="formCCExpireYear.errors?.['required']"
-                    >Exp. Year is required.</div
-                  >
-                  <div *ngIf="formCCExpireYear.errors?.['minlength']"
-                    >Minimum of
+                  <div *ngIf="formCCExpireYear.errors?.['required']">
+                    Exp. Year is required.
+                  </div>
+                  <div *ngIf="formCCExpireYear.errors?.['minlength']">
+                    Minimum of
                     {{ formCCExpireYear.errors?.['minlength']?.['requiredLength'] }}
-                    digits.</div
-                  >
-                  <div *ngIf="formCCExpireYear.errors?.['maxlength']"
-                    >Maximum of
+                    digits.
+                  </div>
+                  <div *ngIf="formCCExpireYear.errors?.['maxlength']">
+                    Maximum of
                     {{ formCCExpireYear.errors?.['maxlength']?.['requiredLength'] }}
-                    digits.</div
-                  >
+                    digits.
+                  </div>
                 </div>
               </div>
             </div>
@@ -337,7 +341,7 @@
                   [(ngModel)]="ccCode"
                   placeholder="Code"
                   class="form-control"
-
+                  autocomplete="cc-csc"
                   required
                   minlength="3"
                   maxlength="4"
@@ -356,23 +360,24 @@
                     formCCCode.invalid && formCCCode.dirty && formCCCode.touched
                   "
                 >
-                  <div *ngIf="formCCCode.errors?.['pattern']?.['requiredPattern'] === '^\\d*$'"
+                  <div
+                    *ngIf="formCCCode.errors?.['pattern']?.['requiredPattern'] === '^\\d*$'"
                   >
                     Only numbers are allowed.
                   </div>
-                  <div *ngIf="formCCCode.errors?.['required']"
-                    >Security Code is required.</div
-                  >
-                  <div *ngIf="formCCCode.errors?.['minlength']"
-                    >Minimum
+                  <div *ngIf="formCCCode.errors?.['required']">
+                    Security Code is required.
+                  </div>
+                  <div *ngIf="formCCCode.errors?.['minlength']">
+                    Minimum
                     {{ formCCCode.errors?.['minlength']?.['requiredLength'] }}
-                    digits.</div
-                  >
-                  <div *ngIf="formCCCode.errors?.['maxlength']"
-                    >Maximum of
+                    digits.
+                  </div>
+                  <div *ngIf="formCCCode.errors?.['maxlength']">
+                    Maximum of
                     {{ formCCCode.errors?.['maxlength']?.['requiredLength'] }}
-                    digits.</div
-                  >
+                    digits.
+                  </div>
                 </div>
               </div>
             </div>
