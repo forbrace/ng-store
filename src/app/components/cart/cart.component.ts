@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { Product } from '../../models/Product';
+import { CartProduct, Product } from '../../models/Product';
 import { Router } from '@angular/router';
 import { Cart } from '../../models/Cart';
 
@@ -25,15 +25,24 @@ export class CartComponent implements OnInit {
     this.cart = this.cartService.updateCart(product, quantity);
   }
 
-  remove(id: string): void {
-    this.cart = this.cartService.removeFromCart(id);
+  remove(product: Product): void {
+    this.cartService.removeFromCart(product);
+    this.cart = this.cartService.getCart();
+    setTimeout(() => alert('The product was removed from cart!'), 500);
   }
 
   clearCart(): void {
     this.cart = this.cartService.clearCart();
+    setTimeout(() => alert('All products were removed from cart!'), 500);
   }
 
   loadCheckout(): void {
     this.router.navigate(['/checkout']);
+  }
+
+  setMinProductQuantity(product: CartProduct): void {
+    if (!product.quantity || product.quantity < 1) {
+      product.quantity = 1;
+    }
   }
 }

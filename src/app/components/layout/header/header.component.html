@@ -4,17 +4,37 @@
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'disabled': !cartItems}" routerLinkActive="active" routerLink="/cart">
+          <a
+            class="nav-link"
+            [ngClass]="{ disabled: !cartItems }"
+            routerLinkActive="active"
+            routerLink="/cart"
+          >
             <div class="d-flex align-items-center">
               <div class="icon-slot icon-slot-24 d-inline-block">
-                <div class="position-absolute" style="left: 50%; top: 50%; transform: translate(-50%, -50%)">
-                  <svg width="24" height="24" class="d-block" viewBox="0 0 24 24"><path d="M7 18C5.9 18 5.01 18.9 5.01 20S5.9 22 7 22 9 21.1 9 20 8.1 18 7 18ZM1 2V4H3L6.6 11.59 5.25 14.04C5.09 14.32 5 14.65 5 15 5 16.1 5.9 17 7 17H19V15H7.42C7.28 15 7.17 14.89 7.17 14.75L7.2 14.63 8.1 13H15.55C16.3 13 16.96 12.59 17.3 11.97L20.88 5.48A1 1 0 0 0 20 4H5.21L4.27 2H1ZM17 18C15.9 18 15.01 18.9 15.01 20S15.9 22 17 22 19 21.1 19 20 18.1 18 17 18Z" fill="currentColor"></path></svg>
+                <div
+                  class="position-absolute"
+                  style="left: 50%; top: 50%; transform: translate(-50%, -50%)"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    class="d-block"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7 18C5.9 18 5.01 18.9 5.01 20S5.9 22 7 22 9 21.1 9 20 8.1 18 7 18ZM1 2V4H3L6.6 11.59 5.25 14.04C5.09 14.32 5 14.65 5 15 5 16.1 5.9 17 7 17H19V15H7.42C7.28 15 7.17 14.89 7.17 14.75L7.2 14.63 8.1 13H15.55C16.3 13 16.96 12.59 17.3 11.97L20.88 5.48A1 1 0 0 0 20 4H5.21L4.27 2H1ZM17 18C15.9 18 15.01 18.9 15.01 20S15.9 22 17 22 19 21.1 19 20 18.1 18 17 18Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
                 </div>
               </div>
-              <div class="ms-1">
-                Cart
-              </div>
-              <span *ngIf="cartItems" class="badge bg-light text-dark font-monospace ms-2">{{ cartItems }}</span>
+              <div class="ms-1">Cart</div>
+              <span
+                *ngIf="cartItems"
+                class="badge bg-light text-dark font-monospace ms-2"
+                >{{ cartItems }}</span
+              >
             </div>
           </a>
         </li>

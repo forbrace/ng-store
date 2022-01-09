@@ -37,6 +37,7 @@ export class CartService {
   }
 
   updateCart(product: Product, quantity: number): Cart {
+    quantity = Math.abs(quantity);
     this.cart.products.map((p) => {
       if (p.id === product.id) {
         p.quantity = quantity;
@@ -47,12 +48,14 @@ export class CartService {
     return this.cart;
   }
 
-  removeFromCart(id: string): Cart {
-    const idx = this.cart.products.findIndex((p) => p.id === id);
+  removeFromCart(product: Product): Product {
+    const idx = this.cart.products.findIndex((p) => p.id === product.id);
     this.cart.products.splice(idx, 1);
     this.getTotalPrice();
     this.emitProductCounter();
-    return this.cart;
+    return (
+      this.cart.products.find((p) => p.id === product.id) || ({} as Product)
+    );
   }
 
   clearCart(): Cart {
