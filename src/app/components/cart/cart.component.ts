@@ -39,10 +39,4 @@ export class CartComponent implements OnInit {
   loadCheckout(): void {
     this.router.navigate(['/checkout']);
   }
-
-  setMinProductQuantity(product: CartProduct): void {
-    if (!product.quantity || product.quantity < 1) {
-      product.quantity = 1;
-    }
-  }
 }

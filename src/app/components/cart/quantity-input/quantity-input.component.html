@@ -1,32 +1,36 @@
-<input
-  name="quantity-{{ index }}"
-  type="number"
-  (keyup)="setMinProductQuantity(product)"
-  (blur)="setMinProductQuantity(product)"
-  min="1"
-  max="99"
-  class="form-control"
-  [(ngModel)]="product.quantity"
-  (ngModelChange)="quantityChange($event)"
-  required
-  #formProductQuantity="ngModel"
-  [ngClass]="{
-    'is-invalid':
+<div class="d-flex justify-content-end">
+  <div>
+    <input
+      name="quantity-{{ index }}"
+      type="number"
+      min="1"
+      max="99"
+      class="form-control"
+      [(ngModel)]="product.quantity"
+      (ngModelChange)="quantityChange($event)"
+      required
+      #formProductQuantity="ngModel"
+      [ngClass]="{
+        'is-invalid':
+          formProductQuantity.invalid &&
+          formProductQuantity.dirty &&
+          formProductQuantity.touched
+      }"
+    />
+  </div>
+  <div
+    *ngIf="
       formProductQuantity.invalid &&
       formProductQuantity.dirty &&
       formProductQuantity.touched
-  }"
-/>
-<div
-  class="invalid-feedback"
-  *ngIf="
-    formProductQuantity.invalid &&
-    formProductQuantity.dirty &&
-    formProductQuantity.touched
-  "
->
-  <div *ngIf="formProductQuantity.errors?.['required']">Required</div>
-  <div *ngIf="formProductQuantity.errors?.['min']?.['min']">
-    Min {{ formProductQuantity.errors?.['min']?.['min'] }}
+    "
+    class="position-relative"
+  >
+    <div class="c-tooltip text-nowrap">
+      <div *ngIf="formProductQuantity.errors?.['required']">Required</div>
+      <div *ngIf="formProductQuantity.errors?.['min']?.['min']">
+        Min {{ formProductQuantity.errors?.['min']?.['min'] }}
+      </div>
+    </div>
   </div>
 </div>

@@ -7,24 +7,18 @@ import { Product } from '../models/Product';
   providedIn: 'root',
 })
 export class ProductService {
-  private FIREBASE_DB_URL: string =
-    'https://ngstore-ade45-default-rtdb.firebaseio.com/';
+  private DB_URL: string =
+    '../../assets';
   private products: Product[] = [];
 
   constructor(private http: HttpClient) {}
 
   fetchProducts(): Observable<Product[]> {
     return this.http
-      .get<{ [key: string]: Product }>(`${this.FIREBASE_DB_URL}/products.json`)
+      .get<Product[]>(`${this.DB_URL}/data.json`)
       .pipe(
         map((res) => {
-          const products: Product[] = [];
-          for (const key in res) {
-            if (res.hasOwnProperty(key)) {
-              products.push({ ...res[key], id: key });
-            }
-          }
-          return products;
+          return [...res];
         }),
         tap((products) => {
           this.products = products;

@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewRef } from '@angular/core';
 import { CartProduct, Product } from '../../../models/Product';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-quantity-selector',
   templateUrl: './quantity-input.component.html',
-  styleUrls: ['./quantity-input.component.scss']
+  styleUrls: ['./quantity-input.component.scss'],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
 })
 export class QuantityInputComponent implements OnInit {
   @Input() product: CartProduct = {} as CartProduct;
@@ -21,9 +23,10 @@ export class QuantityInputComponent implements OnInit {
   }
 
   setMinProductQuantity(product: CartProduct): void {
-    if (!product.quantity || product.quantity < 1) {
-      product.quantity = 1;
+    if (product.quantity && product.quantity > 0) {
+      return;
     }
+    product.quantity = 1;
   }
 
 }

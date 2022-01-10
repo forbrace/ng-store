@@ -1,0 +1,23 @@
+.c-tooltip {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  background: #c00;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 3px;
+  color: #fff;
+
+  &:before {
+    content: '';
+    top: 50%;
+    left: -3px;
+    width: 7px;
+    height: 7px;
+    transform: translateY(-50%) rotate(45deg);
+    background: #c00;
+    position: absolute;
+    transform-origin: 50% 50%;
+  }
+}
